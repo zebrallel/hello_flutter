@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/components/layout.dart';
 
 class CounterPage extends StatefulWidget {
   @override
@@ -10,6 +11,8 @@ class CounterPage extends StatefulWidget {
 class _CounterState extends State<CounterPage> {
   @override
   Widget build(BuildContext context) {
-    return Text('this is counter page');
+    return Layout(
+      child: Text('this is counter page'),
+    );
   }
 }
