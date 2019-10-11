@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:hello_world/components/layout.dart';
+import 'package:charts_common/src/chart/cartesian/axis/spec/ordinal_axis_spec.dart'
+    show FixedPixelOrdinalScaleSpec;
 
 final desktopSalesData = [
   new OrdinalSales('2014', 35),
@@ -55,18 +57,23 @@ class StackedBarChart extends StatelessWidget {
             //   new charts.SeriesLegend(
             //       position: charts.BehaviorPosition.end, desiredMaxRows: 3)
             // ],
-            barRendererDecorator: new charts.BarLabelDecorator<String>(
-                labelPosition: charts.BarLabelPosition.outside,
-                outsideLabelStyleSpec: charts.TextStyleSpec(
-                    fontSize: 18,
-                    color: charts.Color.fromHex(code: '#ff3300'))),
+            defaultRenderer: charts.BarRendererConfig(
+                stackHorizontalSeparator: 0,
+                strokeWidthPx: 0,
+                groupingType: charts.BarGroupingType.stacked,
+                barRendererDecorator: new charts.BarLabelDecorator<String>(
+                    labelPosition: charts.BarLabelPosition.outside,
+                    outsideLabelStyleSpec: charts.TextStyleSpec(
+                        fontSize: 18,
+                        color: charts.Color.fromHex(code: '#ff3300')))),
             domainAxis: new charts.OrdinalAxisSpec(
                 showAxisLine: false,
+                scaleSpec: FixedPixelOrdinalScaleSpec(30),
                 renderSpec: new charts.SmallTickRendererSpec(
                   // Tick and Label styling here.
                   labelStyle: new charts.TextStyleSpec(
-                      fontSize: 18, // size in Pts.
-                      color: charts.Color.fromHex(code: '#FF3300')),
+                      fontSize: 14, // size in Pts.
+                      color: charts.Color.fromHex(code: '#FF00FF')),
                 )),
             secondaryMeasureAxis: new charts.NumericAxisSpec(
                 showAxisLine: false,
