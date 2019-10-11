@@ -70,6 +70,8 @@ class StackedBarChart extends StatelessWidget {
                 )),
             secondaryMeasureAxis: new charts.NumericAxisSpec(
                 showAxisLine: false,
+                tickProviderSpec:
+                    charts.BasicNumericTickProviderSpec(desiredTickCount: 5),
                 renderSpec: new charts.GridlineRendererSpec(
                     labelJustification: charts.TickLabelJustification.outside,
                     labelAnchor: charts.TickLabelAnchor.after,
@@ -139,6 +141,5 @@ class OrdinalSales {
 
 /**
  * 待解决的问题：
- * 1. secondaryAxis line amount
- * 2. line width
+ * 1. line width
  */
