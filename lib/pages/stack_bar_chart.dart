@@ -61,17 +61,15 @@ class StackedBarChart extends StatelessWidget {
                     fontSize: 18,
                     color: charts.Color.fromHex(code: '#ff3300'))),
             domainAxis: new charts.OrdinalAxisSpec(
+                showAxisLine: false,
                 renderSpec: new charts.SmallTickRendererSpec(
-
-                    // Tick and Label styling here.
-                    labelStyle: new charts.TextStyleSpec(
-                        fontSize: 18, // size in Pts.
-                        color: charts.Color.fromHex(code: '#FF3300')),
-
-                    // Change the line colors to match text color.
-                    lineStyle: new charts.LineStyleSpec(
-                        color: charts.Color.transparent))),
+                  // Tick and Label styling here.
+                  labelStyle: new charts.TextStyleSpec(
+                      fontSize: 18, // size in Pts.
+                      color: charts.Color.fromHex(code: '#FF3300')),
+                )),
             secondaryMeasureAxis: new charts.NumericAxisSpec(
+                showAxisLine: false,
                 renderSpec: new charts.GridlineRendererSpec(
                     labelJustification: charts.TickLabelJustification.outside,
                     labelAnchor: charts.TickLabelAnchor.after,
@@ -79,9 +77,6 @@ class StackedBarChart extends StatelessWidget {
                     labelStyle: new charts.TextStyleSpec(
                         fontSize: 15, // size in Pts.
                         color: charts.Color.fromHex(code: '#FF3300')),
-                    axisLineStyle:
-                        charts.LineStyleSpec(color: charts.Color.transparent),
-
                     // Change the line colors to match text color.
                     lineStyle: new charts.LineStyleSpec(
                         dashPattern: [3],
