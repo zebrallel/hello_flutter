@@ -26,6 +26,7 @@ class ChartsPage extends StatelessWidget {
             child: new charts.BarChart(
               seriesList,
               animate: animate,
+              barRendererDecorator: new charts.BarLabelDecorator<String>(),
             )));
   }
 
@@ -46,7 +47,7 @@ class ChartsPage extends StatelessWidget {
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: data,
-      )
+      )..setAttribute(charts.measureAxisIdKey, 'secondaryMeasureAxisId')
     ];
   }
 }
