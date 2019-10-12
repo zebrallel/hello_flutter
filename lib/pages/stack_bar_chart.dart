@@ -145,8 +145,3 @@ class OrdinalSales {
 
   OrdinalSales(this.year, this.sales);
 }
-
-/**
- * 待解决的问题：
- * 1. line width
- */
