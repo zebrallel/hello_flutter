@@ -8,6 +8,10 @@ void main() {
   print(sum);
   var pairs = [[1, 2], [3, 4]];
   print(pairs.expand((pair) => pair).runtimeType);
+
+  final ch2 = Child();
+  ch2.name = '222';
+  print(ch2.name);
 }
 
 abstract class Parent{
@@ -21,6 +25,8 @@ abstract class Parent{
 }
 
 class Child extends Parent{
+  String name = 'child init';
+
   Child();
 
   @override

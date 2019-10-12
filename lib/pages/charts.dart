@@ -23,21 +23,37 @@ class ChartsPage extends StatelessWidget {
     return Layout(
         child: Container(
             padding: EdgeInsets.all(20),
-            child: new charts.BarChart(
-              seriesList,
-              animate: animate,
-              barRendererDecorator: new charts.BarLabelDecorator<String>(),
-            )));
+            height: 500,
+            child: new charts.BarChart(seriesList,
+                animate: animate,
+                barRendererDecorator: new charts.BarLabelDecorator<String>(),
+                defaultInteractions: false,
+                domainAxis: new charts.OrdinalAxisSpec(
+                    viewport: new charts.OrdinalViewport('2014', 6)),
+                secondaryMeasureAxis: new charts.NumericAxisSpec(
+                    tickProviderSpec: charts.BasicNumericTickProviderSpec(
+                        desiredTickCount: 6)),
+                behaviors: [
+                  new charts.SlidingViewport(),
+                  new charts.PanAndZoomBehavior(),
+                ])));
   }
 
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {
     final data = [
-      new OrdinalSales('2014', 5),
-      new OrdinalSales('2015', 25),
+      new OrdinalSales('2014', 55),
+      new OrdinalSales('2015', 125),
       new OrdinalSales('2016', 200),
-      new OrdinalSales('2017', 0),
-      new OrdinalSales('2020', 75),
+      new OrdinalSales('2017', 100),
+      new OrdinalSales('2018', 75),
+      new OrdinalSales('2019', 85),
+      new OrdinalSales('2020', 95),
+      new OrdinalSales('2021', 65),
+      new OrdinalSales('2022', 45),
+      new OrdinalSales('2023', 25),
+      new OrdinalSales('2024', 15),
+      new OrdinalSales('2025', 15),
     ];
 
     return [
