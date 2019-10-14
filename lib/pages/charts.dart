@@ -4,28 +4,19 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
 class ChartsPage extends StatelessWidget {
-  final List<charts.Series> seriesList;
-  final bool animate;
-
-  ChartsPage(this.seriesList, {this.animate});
-
-  /// Creates a [BarChart] with sample data and no transition.
-  factory ChartsPage.withSampleData() {
-    return new ChartsPage(
-      _createSampleData(),
-      // Disable animations for image tests.
-      animate: false,
-    );
-  }
+  ChartsPage();
 
   @override
   Widget build(BuildContext context) {
     return Layout(
-        child: Container(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Container(
             padding: EdgeInsets.all(20),
-            height: 500,
-            child: new charts.BarChart(seriesList,
-                animate: animate,
+            height: 300,
+            child: new charts.BarChart(_createSampleData1(),
+                animate: false,
                 barRendererDecorator: new charts.BarLabelDecorator<String>(),
                 defaultInteractions: false,
                 domainAxis: new charts.OrdinalAxisSpec(
@@ -36,11 +27,19 @@ class ChartsPage extends StatelessWidget {
                 behaviors: [
                   new charts.SlidingViewport(),
                   new charts.PanAndZoomBehavior(),
-                ])));
+                ])),
+        Container(
+          padding: EdgeInsets.all(20),
+          height: 300,
+          child: new charts.BarChart(_createSampleData2(),
+              animate: false, defaultInteractions: false),
+        )
+      ],
+    ));
   }
 
   /// Create one series with sample hard coded data.
-  static List<charts.Series<OrdinalSales, String>> _createSampleData() {
+  static List<charts.Series<OrdinalSales, String>> _createSampleData1() {
     final data = [
       new OrdinalSales('2014', 55),
       new OrdinalSales('2015', 125),
@@ -64,6 +63,25 @@ class ChartsPage extends StatelessWidget {
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: data,
       )..setAttribute(charts.measureAxisIdKey, 'secondaryMeasureAxisId')
+    ];
+  }
+
+  static List<charts.Series<OrdinalSales, String>> _createSampleData2() {
+    final data = [
+      new OrdinalSales('2014', 55),
+      new OrdinalSales('2015', 125),
+      new OrdinalSales('2016', 200),
+      new OrdinalSales('2017', 100),
+      new OrdinalSales('2018', 75),
+    ];
+
+    return [
+      new charts.Series<OrdinalSales, String>(
+          id: 'sales2',
+          colorFn: (_, __) => charts.MaterialPalette.indigo.shadeDefault,
+          domainFn: (OrdinalSales sales, _) => sales.year,
+          measureFn: (OrdinalSales sales, _) => sales.sales,
+          data: data)
     ];
   }
 }

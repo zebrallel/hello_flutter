@@ -9,7 +9,7 @@ final routeConfigs = {
   'loading': (context) => LoadingPage(),
   'counter': (context) => CounterPage(),
   'layout': (context) => LayoutPage(),
-  'bar chart': (context) => ChartsPage.withSampleData(),
+  'bar chart': (context) => ChartsPage(),
   'stack bar chart': (context) => StackedBarChart.withSampleData(),
   'progress circle': (context) => ProgressCirclePage()
 };

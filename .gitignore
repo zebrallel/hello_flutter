@@ -9,6 +9,8 @@
 .history
 .svn/
 
+/doc/export
+
 # IntelliJ related
 *.iml
 *.ipr
