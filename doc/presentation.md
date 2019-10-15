@@ -7,15 +7,15 @@ enableTitleFooter: false
 
 # conception
 
-- Domain:  The thing being measured; e.g. "type of vehicle"
-- Measure: The numerical value; e.g. "number of wheels"
-- Data point: A measure for a domain; e.g. ('car', 4)
-- Series: A sequenced collection of individual data points; e.g. [('car', 4), ('bicycle', 2)]
-- Id: A unique identifier for a single series
+- Domain
+- Measure
+- Data point
+- Series
+- Tick
+- Legend
+- Behavior
 
 ---
-
-## Series sample
 
 ```dart
 var series = [
@@ -37,3 +37,32 @@ class ClicksPerYear {
 ```
 
 ---
+
+## domain axis & measure axis
+
+* domainAxis
+* primaryMeasureAxis
+* secondaryMeasureAxis
+
+---
+
+## OrdinalAxisSpec
+
+- viewport
+- renderSpec
+  - GridLineRendererSpec
+  - SmallTickRendererSpec
+  - NoneRenderSpec
+- scaleSpec
+  - SimpleOrdinalScaleSpec
+  - FixedPixelSpaceOrdinalScaleSpec
+  - FixedPixelOrdinalScaleSpec
+- tickProviderSpec
+  - BasicOrdinalTickProviderSpec
+  - StaticOrdinalTickProviderSpec
+- tickFormatterSpec
+- showAxisLine
+
+---
+
+## NumericAxisSpec

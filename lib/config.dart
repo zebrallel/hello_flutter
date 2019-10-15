@@ -1,4 +1,5 @@
 import 'package:hello_world/pages/charts.dart';
+import 'package:hello_world/pages/constructor.dart';
 import 'package:hello_world/pages/counter.dart';
 import 'package:hello_world/pages/layout.dart';
 import 'package:hello_world/pages/loading.dart';
@@ -11,5 +12,6 @@ final routeConfigs = {
   'layout': (context) => LayoutPage(),
   'bar chart': (context) => ChartsPage(),
   'stack bar chart': (context) => StackedBarChart.withSampleData(),
-  'progress circle': (context) => ProgressCirclePage()
+  'progress circle': (context) => ProgressCirclePage(),
+  'constructors': (context) => ConstructorPage()
 };

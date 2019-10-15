@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hello_world/components/layout.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
+import 'package:charts_common/src/chart/cartesian/axis/spec/ordinal_axis_spec.dart';
 
 class ChartsPage extends StatelessWidget {
   ChartsPage();
@@ -13,14 +14,42 @@ class ChartsPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Container(
+          padding: EdgeInsets.all(20),
+          height: 400,
+          child: new charts.BarChart(
+            _createSampleData2(),
+            barRendererDecorator: new charts.BarLabelDecorator<String>(
+                labelPosition: charts.BarLabelPosition.outside,
+                outsideLabelStyleSpec: charts.TextStyleSpec(
+                    fontSize: 12,
+                    color: charts.Color.fromHex(code: '#000000'))),
+            domainAxis: charts.OrdinalAxisSpec(
+                scaleSpec: SimpleOrdinalScaleSpec(),
+                renderSpec: charts.GridlineRendererSpec(
+              labelStyle: charts.TextStyleSpec(
+                  color: charts.MaterialPalette.green.shadeDefault),
+              lineStyle: charts.LineStyleSpec(
+                  color: charts.MaterialPalette.indigo.shadeDefault),
+              labelAnchor: charts.TickLabelAnchor.centered,
+            )),
+            primaryMeasureAxis: charts.NumericAxisSpec(
+              renderSpec: charts.GridlineRendererSpec(
+                labelStyle: charts.TextStyleSpec(
+                  color: charts.MaterialPalette.pink.shadeDefault,
+                ),
+                lineStyle: charts.LineStyleSpec(
+                  color: charts.MaterialPalette.pink.shadeDefault
+                )
+              )
+            ),
+          ),
+        ),
+        Container(
             padding: EdgeInsets.all(20),
             height: 300,
             child: new charts.BarChart(_createSampleData1(),
-                animate: false,
-                barRendererDecorator: new charts.BarLabelDecorator<String>(),
-                defaultInteractions: false,
                 domainAxis: new charts.OrdinalAxisSpec(
-                    viewport: new charts.OrdinalViewport('2014', 6)),
+                    viewport: new charts.OrdinalViewport('2018', 3)),
                 secondaryMeasureAxis: new charts.NumericAxisSpec(
                     tickProviderSpec: charts.BasicNumericTickProviderSpec(
                         desiredTickCount: 6)),
@@ -28,12 +57,6 @@ class ChartsPage extends StatelessWidget {
                   new charts.SlidingViewport(),
                   new charts.PanAndZoomBehavior(),
                 ])),
-        Container(
-          padding: EdgeInsets.all(20),
-          height: 300,
-          child: new charts.BarChart(_createSampleData2(),
-              animate: false, defaultInteractions: false),
-        )
       ],
     ));
   }
