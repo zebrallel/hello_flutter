@@ -27,6 +27,7 @@ var series = [
     data: data,
   ),
 ];
+
 class ClicksPerYear {
   String year;
   int clicks;
@@ -38,7 +39,15 @@ class ClicksPerYear {
 
 ---
 
-## domain axis & measure axis
+# BarGroupingType
+
+- grouped
+- stacked
+- groupedStacked
+
+---
+
+# domain axis & measure axis
 
 * domainAxis
 * primaryMeasureAxis
@@ -46,7 +55,7 @@ class ClicksPerYear {
 
 ---
 
-## OrdinalAxisSpec
+# OrdinalAxisSpec
 
 - viewport
 - renderSpec
@@ -61,8 +70,27 @@ class ClicksPerYear {
   - BasicOrdinalTickProviderSpec
   - StaticOrdinalTickProviderSpec
 - tickFormatterSpec
+  - BasicOrdinalTickFormatterSpec
 - showAxisLine
 
 ---
 
-## NumericAxisSpec
+# BarRenderDecorator
+
+- BarLabelDecorator
+  - insideLabelStyleSpec
+  - outsideLabelStyleSpec
+  - labelAnchor
+  - labelPosition
+  - labelPadding
+
+# BarRendererConfig
+
+- cornerStrategy
+- fillPattern
+- groupingType
+- layoutPaintOrder
+
+# behaviors
+
+# selectionModels

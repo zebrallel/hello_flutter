@@ -10,7 +10,8 @@ class ChartsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Layout(
-        child: Column(
+        child: SingleChildScrollView(
+            child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Container(
@@ -25,23 +26,29 @@ class ChartsPage extends StatelessWidget {
                     color: charts.Color.fromHex(code: '#000000'))),
             domainAxis: charts.OrdinalAxisSpec(
                 scaleSpec: SimpleOrdinalScaleSpec(),
+                tickProviderSpec: charts.StaticOrdinalTickProviderSpec([
+                  charts.TickSpec('2016', label: '20-16'),
+                  charts.TickSpec('2014'),
+                  charts.TickSpec('2015'),
+                  charts.TickSpec('2017'),
+                  charts.TickSpec('2018'),
+                ]),
+                showAxisLine: false,
                 renderSpec: charts.GridlineRendererSpec(
-              labelStyle: charts.TextStyleSpec(
-                  color: charts.MaterialPalette.green.shadeDefault),
-              lineStyle: charts.LineStyleSpec(
-                  color: charts.MaterialPalette.indigo.shadeDefault),
-              labelAnchor: charts.TickLabelAnchor.centered,
-            )),
+                  labelStyle: charts.TextStyleSpec(
+                      color: charts.MaterialPalette.green.shadeDefault),
+                  lineStyle: charts.LineStyleSpec(
+                      color: charts.MaterialPalette.indigo.shadeDefault),
+                  labelAnchor: charts.TickLabelAnchor.centered,
+                )),
             primaryMeasureAxis: charts.NumericAxisSpec(
-              renderSpec: charts.GridlineRendererSpec(
-                labelStyle: charts.TextStyleSpec(
-                  color: charts.MaterialPalette.pink.shadeDefault,
-                ),
-                lineStyle: charts.LineStyleSpec(
-                  color: charts.MaterialPalette.pink.shadeDefault
-                )
-              )
-            ),
+                showAxisLine: true,
+                renderSpec: charts.GridlineRendererSpec(
+                    labelStyle: charts.TextStyleSpec(
+                      color: charts.MaterialPalette.pink.shadeDefault,
+                    ),
+                    lineStyle: charts.LineStyleSpec(
+                        color: charts.MaterialPalette.pink.shadeDefault))),
           ),
         ),
         Container(
@@ -57,8 +64,15 @@ class ChartsPage extends StatelessWidget {
                   new charts.SlidingViewport(),
                   new charts.PanAndZoomBehavior(),
                 ])),
+        Container(
+            padding: EdgeInsets.all(20),
+            height: 300,
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: charts.BarChart(_createSampleData2()),
+            ))
       ],
-    ));
+    )));
   }
 
   /// Create one series with sample hard coded data.
