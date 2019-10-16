@@ -5,24 +5,24 @@ import 'package:charts_common/src/chart/cartesian/axis/spec/ordinal_axis_spec.da
     show FixedPixelOrdinalScaleSpec;
 
 final desktopSalesData = [
-  new OrdinalSales('2014', 35),
-  new OrdinalSales('2015', 25),
-  new OrdinalSales('2016', 50),
-  new OrdinalSales('today', 75),
+  new OrdinalSales('2014', 35, Color.fromRGBO(255, 0, 0, 0.5)),
+  new OrdinalSales('2015', 25, Colors.red),
+  new OrdinalSales('2016', 50, Colors.red),
+  new OrdinalSales('today', 75,Colors.red),
 ];
 
 final tableSalesData = [
-  new OrdinalSales('2014', 25),
-  new OrdinalSales('2015', 50),
-  new OrdinalSales('2016', 10),
-  new OrdinalSales('today', 20),
+  new OrdinalSales('2014', 25, Color.fromRGBO(0, 255, 0, 0.5)),
+  new OrdinalSales('2015', 50, Colors.green),
+  new OrdinalSales('2016', 10, Colors.green),
+  new OrdinalSales('today', 20, Colors.green),
 ];
 
 final mobileSalesData = [
-  new OrdinalSales('2014', 10),
-  new OrdinalSales('2015', 15),
-  new OrdinalSales('2016', 50),
-  new OrdinalSales('today', 45),
+  new OrdinalSales('2014', 10, Color.fromRGBO(0, 0, 255, 0.5)),
+  new OrdinalSales('2015', 15, Colors.blue),
+  new OrdinalSales('2016', 50, Colors.blue),
+  new OrdinalSales('today', 45, Colors.blue),
 ];
 
 class StackedBarChart extends StatelessWidget {
@@ -64,7 +64,7 @@ class StackedBarChart extends StatelessWidget {
                 barRendererDecorator: new charts.BarLabelDecorator<String>(
                     labelPosition: charts.BarLabelPosition.outside,
                     outsideLabelStyleSpec: charts.TextStyleSpec(
-                        fontSize: 18,
+                        fontSize: 12,
                         color: charts.Color.fromHex(code: '#ff3300')))),
             domainAxis: new charts.OrdinalAxisSpec(
                 showAxisLine: false,
@@ -78,7 +78,13 @@ class StackedBarChart extends StatelessWidget {
             secondaryMeasureAxis: new charts.NumericAxisSpec(
                 showAxisLine: false,
                 tickProviderSpec:
-                    charts.BasicNumericTickProviderSpec(desiredTickCount: 5),
+                    charts.StaticNumericTickProviderSpec([
+                      charts.TickSpec(0, label: '0'),
+                      charts.TickSpec(50, label: '50'),
+                      charts.TickSpec(100, label: '100'),
+                      charts.TickSpec(150, label: '150'),
+                      charts.TickSpec(200, label: '200'),
+                    ]),
                 renderSpec: new charts.GridlineRendererSpec(
                     labelJustification: charts.TickLabelJustification.outside,
                     labelAnchor: charts.TickLabelAnchor.after,
@@ -113,17 +119,17 @@ class StackedBarChart extends StatelessWidget {
     return [
       new charts.Series<OrdinalSales, String>(
         id: 'Desktop',
-        seriesColor: charts.Color.black,
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
+        fillColorFn: (OrdinalSales sales, _) => sales.color,
         data: desktopSalesData,
         labelAccessorFn: labelFn,
       )..setAttribute(charts.measureAxisIdKey, secondaryMeasureAxisId),
       new charts.Series<OrdinalSales, String>(
         id: 'Tablet',
-        seriesColor: charts.Color.fromHex(code: '#ff3300'),
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
+        fillColorFn: (OrdinalSales sales, _) => sales.color,
         data: tableSalesData,
         labelAccessorFn: (OrdinalSales sales, _) => '',
       )..setAttribute(charts.measureAxisIdKey, secondaryMeasureAxisId),
@@ -131,6 +137,7 @@ class StackedBarChart extends StatelessWidget {
         id: 'Mobile',
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
+        fillColorFn: (OrdinalSales sales, _) => sales.color,
         data: mobileSalesData,
         labelAccessorFn: (OrdinalSales sales, _) => '',
       )..setAttribute(charts.measureAxisIdKey, secondaryMeasureAxisId),
@@ -140,8 +147,11 @@ class StackedBarChart extends StatelessWidget {
 
 /// Sample ordinal data type.
 class OrdinalSales {
-  final String year;
-  final int sales;
+  String year;
+  int sales;
+  charts.Color color;
 
-  OrdinalSales(this.year, this.sales);
+  OrdinalSales(this.year, this.sales, Color color)
+      : this.color = charts.Color(
+            r: color.red, g: color.green, b: color.blue, a: color.alpha);
 }
