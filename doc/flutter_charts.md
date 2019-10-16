@@ -5,6 +5,17 @@ transition: 'slide'
 enableTitleFooter: false
 ---
 
+# chart types
+
+- Bar charts
+- Time series charts
+- Line Charts
+- Scatter plot charts
+- Combo Charts
+- Pie Charts
+
+---
+
 # conception
 
 - Domain
