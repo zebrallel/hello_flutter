@@ -35,8 +35,13 @@ class ChartsPage extends StatelessWidget {
                 domainAxis: new charts.OrdinalAxisSpec(
                     viewport: new charts.OrdinalViewport('2018', 4)),
                 secondaryMeasureAxis: new charts.NumericAxisSpec(
-                    tickProviderSpec: charts.BasicNumericTickProviderSpec(
-                        desiredTickCount: 6)),
+                    tickProviderSpec: charts.StaticNumericTickProviderSpec([
+                  charts.TickSpec(0, label: '0'),
+                  charts.TickSpec(50, label: '50'),
+                  charts.TickSpec(100, label: '100'),
+                  charts.TickSpec(150, label: '150'),
+                  charts.TickSpec(200, label: '200'),
+                ])),
                 behaviors: [
                   new charts.SlidingViewport(),
                   new charts.PanAndZoomBehavior(),
