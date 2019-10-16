@@ -1,3 +1,4 @@
+import 'package:hello_world/pages/basic_bar_chart.dart';
 import 'package:hello_world/pages/chart_selection_callback.dart';
 import 'package:hello_world/pages/charts.dart';
 import 'package:hello_world/pages/constructor.dart';
@@ -17,5 +18,6 @@ final routeConfigs = {
   'bar chart': (context) => ChartsPage(),
   'stack bar chart': (context) => StackedBarChart.withSampleData(),
   'chart selection callback': (context) => ChartSelectionCallbackPage(),
-  'slider line chart': (context) => SliderLinePage.withSampleData()
+  'slider line chart': (context) => SliderLinePage.withSampleData(),
+  '柱状图': (context) => BasicBarChartPage()
 };

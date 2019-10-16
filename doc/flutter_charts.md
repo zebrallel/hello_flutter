@@ -18,13 +18,13 @@ enableTitleFooter: false
 
 # conception
 
-- Domain
-- Measure
-- Data point
-- Series
-- Tick
-- Legend
-- Behavior
+- Domain  e.g. 交通工具
+- Measure  e.g. 销量
+- Data point ('轿车'，5000)
+- Series 
+- Tick 刻度
+- Legend 图例
+- Behavior 行为
 
 ---
 
