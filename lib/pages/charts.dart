@@ -15,10 +15,38 @@ class ChartsPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Container(
+            padding: EdgeInsets.all(20),
+            height: 400,
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: charts.BarChart(
+                _createSampleData3(),
+                animate: false,
+                defaultInteractions: false, // default true
+                barGroupingType: charts.BarGroupingType.grouped,
+                behaviors: [new charts.SeriesLegend()],
+              ),
+            )),
+        Container(
+            padding: EdgeInsets.all(20),
+            height: 400,
+            child: new charts.BarChart(_createSampleData1(),
+                animate: false,
+                domainAxis: new charts.OrdinalAxisSpec(
+                    viewport: new charts.OrdinalViewport('2018', 4)),
+                secondaryMeasureAxis: new charts.NumericAxisSpec(
+                    tickProviderSpec: charts.BasicNumericTickProviderSpec(
+                        desiredTickCount: 6)),
+                behaviors: [
+                  new charts.SlidingViewport(),
+                  new charts.PanAndZoomBehavior(),
+                ])),
+        Container(
           padding: EdgeInsets.all(20),
           height: 400,
           child: new charts.BarChart(
             _createSampleData2(),
+            animate: false,
             barRendererDecorator: new charts.BarLabelDecorator<String>(
                 labelPosition: charts.BarLabelPosition.outside,
                 outsideLabelStyleSpec: charts.TextStyleSpec(
@@ -51,26 +79,6 @@ class ChartsPage extends StatelessWidget {
                         color: charts.MaterialPalette.pink.shadeDefault))),
           ),
         ),
-        Container(
-            padding: EdgeInsets.all(20),
-            height: 300,
-            child: new charts.BarChart(_createSampleData1(),
-                domainAxis: new charts.OrdinalAxisSpec(
-                    viewport: new charts.OrdinalViewport('2018', 3)),
-                secondaryMeasureAxis: new charts.NumericAxisSpec(
-                    tickProviderSpec: charts.BasicNumericTickProviderSpec(
-                        desiredTickCount: 6)),
-                behaviors: [
-                  new charts.SlidingViewport(),
-                  new charts.PanAndZoomBehavior(),
-                ])),
-        Container(
-            padding: EdgeInsets.all(20),
-            height: 300,
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: charts.BarChart(_createSampleData2()),
-            ))
       ],
     )));
   }
@@ -114,11 +122,68 @@ class ChartsPage extends StatelessWidget {
 
     return [
       new charts.Series<OrdinalSales, String>(
-          id: 'sales2',
+          id: 'year sales',
           colorFn: (_, __) => charts.MaterialPalette.indigo.shadeDefault,
           domainFn: (OrdinalSales sales, _) => sales.year,
           measureFn: (OrdinalSales sales, _) => sales.sales,
           data: data)
+    ];
+  }
+
+  static List<charts.Series<OrdinalSales, String>> _createSampleData3() {
+    final desktopSalesData = [
+      new OrdinalSales('2014', 5),
+      new OrdinalSales('2015', 25),
+      new OrdinalSales('2016', 100),
+      new OrdinalSales('2017', 75),
+    ];
+
+    final tabletSalesData = [
+      new OrdinalSales('2014', 25),
+      new OrdinalSales('2015', 50),
+      new OrdinalSales('2016', 10),
+      new OrdinalSales('2017', 20),
+    ];
+
+    final mobileSalesData = [
+      new OrdinalSales('2014', 10),
+      new OrdinalSales('2015', 15),
+      new OrdinalSales('2016', 50),
+      new OrdinalSales('2017', 45),
+    ];
+
+    final otherSalesData = [
+      new OrdinalSales('2014', 20),
+      new OrdinalSales('2015', 35),
+      new OrdinalSales('2016', 15),
+      new OrdinalSales('2017', 10),
+    ];
+
+    return [
+      new charts.Series<OrdinalSales, String>(
+        id: 'Desktop',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: desktopSalesData,
+      ),
+      new charts.Series<OrdinalSales, String>(
+        id: 'Tablet',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: tabletSalesData,
+      ),
+      new charts.Series<OrdinalSales, String>(
+        id: 'Mobile',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: mobileSalesData,
+      ),
+      new charts.Series<OrdinalSales, String>(
+        id: 'Other',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: otherSalesData,
+      ),
     ];
   }
 }
