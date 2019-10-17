@@ -8,7 +8,7 @@
 - Legend 图例
 - Behavior 行为
 
-# 实现一个柱状图
+# 实现一个图表
 
 * 定义series
   * id
