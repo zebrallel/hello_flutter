@@ -16,10 +16,24 @@
   * domainFn
   * measureFn
 * 禁用默认交互
+  * defaultInteractions
 * 自定义measure颜色
+  * colorFn
 * 动态改变measure
 * 添加measure label
+  * barRendererDecorator
 * 添加图例
+  * SeriesLegend
 * 自定义measure axis刻度
   * primaryMeasureAxis
   * tickProviderSpec
+* 添加CustomLine
+  * customSeriesRenderers
+  * LineRendererConfig
+  * customRendererId
+  * charts.rendererIdKey
+* 添加viewport
+  * OrdinalViewPort
+* 添加pan and zoom
+  * SlidingViewport
+  * PanAndZoomBehavior
