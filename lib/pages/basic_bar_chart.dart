@@ -11,77 +11,85 @@ class BasicBarChartPage extends StatefulWidget {
 }
 
 class BasicBarChartState extends State<BasicBarChartPage> {
-  int _count = 100;
+  int _carValue = 100;
 
   List<charts.Series<Vehicle, String>> createSeries() {
-    final series1980 = [
-      Vehicle('car', _count, charts.Color.fromHex(code: '#FF0000')),
-      Vehicle('bkie', 200, charts.Color.fromHex(code: '#00FF00')),
-      Vehicle('bus', 300, charts.Color.fromHex(code: '#0000FF')),
-      Vehicle('car2', _count, charts.Color.fromHex(code: '#FF0000')),
-      Vehicle('bkie2', 200, charts.Color.fromHex(code: '#00FF00')),
-      Vehicle('bus2', 300, charts.Color.fromHex(code: '#0000FF'))
+    List<Vehicle> series1980 = [
+      Vehicle('car', _carValue, charts.Color.fromHex(code: '#FF0000')),
+      Vehicle('bus', 200, charts.Color.fromHex(code: '#FFFF00')),
+      Vehicle('bike', 150, charts.Color.fromHex(code: '#0000FF')),
+      Vehicle('car2', _carValue, charts.Color.fromHex(code: '#FF0000')),
+      Vehicle('bus2', 200, charts.Color.fromHex(code: '#FFFF00')),
+      Vehicle('bike2', 150, charts.Color.fromHex(code: '#0000FF')),
+      Vehicle('car3', _carValue, charts.Color.fromHex(code: '#FF0000')),
+      Vehicle('bus3', 200, charts.Color.fromHex(code: '#FFFF00')),
+      Vehicle('bike3', 150, charts.Color.fromHex(code: '#0000FF')),
     ];
 
-    final series1990 = [
-      Vehicle('car', 150, charts.Color.fromHex(code: '#FF0000')),
-      Vehicle('bkie', 250, charts.Color.fromHex(code: '#00FF00')),
-      Vehicle('bus', 120, charts.Color.fromHex(code: '#0000FF'))
+    List<Vehicle> series1990 = [
+      Vehicle('car', 120, charts.Color.fromHex(code: '#FF0000')),
+      Vehicle('bus', 190, charts.Color.fromHex(code: '#aabbcc')),
+      Vehicle('bike', 110, charts.Color.fromHex(code: '#ccbbaa')),
     ];
 
     return [
       charts.Series<Vehicle, String>(
-          id: 'vehicle sales',
+          id: '1980s',
           domainFn: (Vehicle vehicle, _) => vehicle.name,
           measureFn: (Vehicle vehicle, _) => vehicle.sales,
           colorFn: (Vehicle vehicle, _) => vehicle.color,
           data: series1980),
       charts.Series<Vehicle, String>(
-          id: 'vehicle sales',
+          id: '1990s',
           domainFn: (Vehicle vehicle, _) => vehicle.name,
           measureFn: (Vehicle vehicle, _) => vehicle.sales,
           colorFn: (Vehicle vehicle, _) => vehicle.color,
           data: series1990)
-        ..setAttribute(charts.rendererIdKey, 'line')
+        ..setAttribute(charts.rendererIdKey, 'customLineSeries'),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
     return Layout(
-      child: Column(children: <Widget>[
+        child: Column(
+      children: <Widget>[
         Container(
-            padding: EdgeInsets.all(20),
             height: 400,
+            padding: EdgeInsets.all(20),
             child: charts.BarChart(
               this.createSeries(),
               defaultInteractions: false,
-              primaryMeasureAxis: charts.NumericAxisSpec(
-                  tickProviderSpec: charts.StaticNumericTickProviderSpec([
-                charts.TickSpec(0, label: '0'),
-                charts.TickSpec(400, label: '400'),
-              ])),
-              behaviors: [
-                charts.SeriesLegend(),
-                charts.SlidingViewport(),
-                charts.PanAndZoomBehavior()
-              ],
-              customSeriesRenderers: [
-                charts.LineRendererConfig(customRendererId: 'line')
-              ],
+              barRendererDecorator: charts.BarLabelDecorator(
+                  labelPosition: charts.BarLabelPosition.outside),
+              behaviors: [charts.SeriesLegend(), charts.SlidingViewport(), charts.PanAndZoomBehavior()],
               domainAxis: charts.OrdinalAxisSpec(
                   viewport: charts.OrdinalViewport('car2', 4)),
+              primaryMeasureAxis: charts.NumericAxisSpec(
+                  tickProviderSpec:
+                      charts.BasicNumericTickProviderSpec(desiredTickCount: 5)
+                  //     tickProviderSpec: charts.StaticNumericTickProviderSpec([
+                  //   charts.TickSpec(0, label: '0'),
+                  //   charts.TickSpec(200, label: '200'),
+                  // ])
+                  ),
+              customSeriesRenderers: [
+                charts.LineRendererConfig(customRendererId: 'customLineSeries')
+              ],
             )),
-        RaisedButton(
-          child: Text('click me to add car'),
-          onPressed: () {
-            setState(() {
-              _count = _count + 10;
-            });
-          },
+        Padding(
+          padding: EdgeInsets.only(top: 20),
+          child: RaisedButton(
+            child: Text('increase car value'),
+            onPressed: () {
+              setState(() {
+                _carValue = _carValue + 10;
+              });
+            },
+          ),
         )
-      ]),
-    );
+      ],
+    ));
   }
 }
 

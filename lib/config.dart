@@ -3,6 +3,7 @@ import 'package:hello_world/pages/chart_selection_callback.dart';
 import 'package:hello_world/pages/charts.dart';
 import 'package:hello_world/pages/constructor.dart';
 import 'package:hello_world/pages/counter.dart';
+import 'package:hello_world/pages/knowledge/mastery.dart';
 import 'package:hello_world/pages/layout.dart';
 import 'package:hello_world/pages/line_slide_chart.dart';
 import 'package:hello_world/pages/loading.dart';
@@ -19,5 +20,6 @@ final routeConfigs = {
   'stack bar chart': (context) => StackedBarChart.withSampleData(),
   'chart selection callback': (context) => ChartSelectionCallbackPage(),
   'slider line chart': (context) => SliderLinePage.withSampleData(),
-  '柱状图': (context) => BasicBarChartPage()
+  '柱状图': (context) => BasicBarChartPage(),
+  '掌握度': (context) => MasteryPage()
 };
