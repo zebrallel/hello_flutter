@@ -1,7 +1,7 @@
 void main() {
-  var f = Foo();
-  f.gotoSky();
-  print(f.canFly);
+  final List<int> a = [];
+  a.add(100);
+  print(a.join(','));
 }
 
 class Foo with Flyer implements C, D{
