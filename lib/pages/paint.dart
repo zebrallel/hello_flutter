@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hello_world/components/layout.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ProgressCirclePage extends StatefulWidget {
   @override
@@ -15,13 +14,6 @@ class ProgressCirclePage extends StatefulWidget {
 class ProgressCircleState extends State<ProgressCirclePage> {
   @override
   Widget build(BuildContext context) {
-    final String assetName = 'assets/images/arrow-right.svg';
-    final Widget svgArrowRight = new SvgPicture.asset(
-      assetName,
-      semanticsLabel: 'arrow right',
-      color: Colors.red,
-      width: 64,
-    );
     return Layout(
         child: Column(
       children: <Widget>[
@@ -31,10 +23,6 @@ class ProgressCircleState extends State<ProgressCirclePage> {
           key: GlobalKey(),
           painter: VocabProgressBar(),
         ),
-        Container(
-          height: 100,
-          child: svgArrowRight
-        )
       ],
     ));
   }
@@ -45,28 +33,28 @@ class VocabProgressBar extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final backgroundLine = Paint()
       ..style = PaintingStyle.stroke
-      ..color = Color.fromRGBO(200, 200, 200, 1)
+      ..color = Color(0xffe9e8ea)
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = 12;
+      ..strokeWidth = 6;
     final totalLine = Paint()
       ..style = PaintingStyle.fill
-      ..color = Colors.orange;
+      ..color = Color(0xffffca29);
     final todayLine = Paint()
       ..style = PaintingStyle.stroke
-      ..color = Colors.green
+      ..color = Color(0xff26d07c)
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = 12;
+      ..strokeWidth = 6;
 
     num degToRad(num deg) => deg * (pi / 180.0);
 
     canvas.drawLine(Offset(20, 0), Offset(size.width - 20, 0), backgroundLine);
-    canvas.drawLine(Offset(200, 0), Offset(250, 0), todayLine);
+    canvas.drawLine(Offset(200, 0), Offset(220, 0), todayLine);
     canvas.drawPath(
         Path()
-          ..moveTo(200, -6)
-          ..lineTo(200, 6)
-          ..lineTo(20, 6)
-          ..arcTo(Rect.fromCircle(center: Offset(20, 0), radius: 6),
+          ..moveTo(200, -3)
+          ..lineTo(200, 3)
+          ..lineTo(20, 3)
+          ..arcTo(Rect.fromCircle(center: Offset(20, 0), radius: 3),
               degToRad(0), degToRad(270), false),
         totalLine);
   }

@@ -9,6 +9,7 @@ import 'package:hello_world/pages/line_slide_chart.dart';
 import 'package:hello_world/pages/loading.dart';
 import 'package:hello_world/pages/paint.dart';
 import 'package:hello_world/pages/stack_bar_chart.dart';
+import 'package:hello_world/pages/vocabulary/vocabulary.dart';
 
 final routeConfigs = {
   'loading': (context) => LoadingPage(),
@@ -21,5 +22,6 @@ final routeConfigs = {
   'chart selection callback': (context) => ChartSelectionCallbackPage(),
   'slider line chart': (context) => SliderLinePage.withSampleData(),
   '柱状图': (context) => BasicBarChartPage(),
-  '掌握度': (context) => MasteryPage()
+  '掌握度': (context) => MasteryPage(),
+  '我的词汇量': (context) => VocabularyPage()
 };
