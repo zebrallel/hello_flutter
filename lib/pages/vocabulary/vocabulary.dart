@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hello_world/components/layout.dart';
 
 class VocabularyPage extends StatelessWidget {
+  final int vocabValue = 3562;
+
   @override
   Widget build(BuildContext context) {
     return Layout(
@@ -44,7 +46,7 @@ class VocabularyPage extends StatelessWidget {
               padding: EdgeInsets.only(top: 26),
               child: Row(
                 children: <Widget>[
-                  Text('3,762',
+                  Text(vocabValue.toString(),
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w800,
@@ -152,7 +154,6 @@ class _VocabProgressBar extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    // TODO: listen data change
     return false;
   }
 }
