@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hello_world/components/layout.dart';
 
 class VocabularyPage extends StatelessWidget {
+  final int vocabValue = 3562;
+
   @override
   Widget build(BuildContext context) {
     return Layout(
@@ -31,13 +33,11 @@ class VocabularyPage extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF7c7a81)),
                     ),
-                    Padding(
-                        padding: EdgeInsets.only(left: 5),
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: 12,
-                          color: Color(0xFF25222d),
-                        ))
+                    Image.asset(
+                      'assets/images/icon_actions_arrow_right_secondary_light_12@2x.png',
+                      width: 12,
+                      height: 12,
+                    )
                   ],
                 ))
               ],
@@ -46,7 +46,7 @@ class VocabularyPage extends StatelessWidget {
               padding: EdgeInsets.only(top: 26),
               child: Row(
                 children: <Widget>[
-                  Text('3,762',
+                  Text(vocabValue.toString(),
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w800,
@@ -57,15 +57,11 @@ class VocabularyPage extends StatelessWidget {
                         Text('比昨日', style: TextStyle(color: Color(0xFF7c7a81))),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 3),
-                    child: Transform.rotate(
-                      angle: pi / 2 * 3,
-                      child: Icon(
-                        Icons.play_arrow,
-                        color: Color(0xFF26d07c),
-                      ),
-                    ),
-                  ),
+                      padding: EdgeInsets.only(top: 1, left: 3, right: 3),
+                      child: Image.asset(
+                          'assets/images/icon_glyphs_triangle_green_up_12@2x.png',
+                          width: 12,
+                          height: 12)),
                   Text(
                     '62',
                     style: TextStyle(
@@ -158,7 +154,6 @@ class _VocabProgressBar extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    // TODO: listen data change
     return false;
   }
 }

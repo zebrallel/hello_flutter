@@ -1,7 +1,7 @@
 const masteryMockData = [
   {
-    'timestamps': 1568764800,
-    'detail': [
+    'timestamp': 1568764800,
+    'details': [
       {'type': 1, 'value': 10},
       {'type': 2, 'value': 20},
       {'type': 3, 'value': 30},
@@ -10,8 +10,8 @@ const masteryMockData = [
     'studied': true
   },
   {
-    'timestamps': 1568851200,
-    'detail': [
+    'timestamp': 1568851200,
+    'details': [
       {'type': 1, 'value': 20},
       {'type': 2, 'value': 30},
       {'type': 3, 'value': 40},
@@ -20,8 +20,8 @@ const masteryMockData = [
     'studied': false
   },
   {
-    'timestamps': 1568937600,
-    'detail': [
+    'timestamp': 1568937600,
+    'details': [
       {'type': 1, 'value': 30},
       {'type': 2, 'value': 40},
       {'type': 3, 'value': 60},
@@ -30,8 +30,8 @@ const masteryMockData = [
     'studied': true
   },
   {
-    'timestamps': 1569024000,
-    'detail': [
+    'timestamp': 1569024000,
+    'details': [
       {'type': 1, 'value': 40},
       {'type': 2, 'value': 50},
       {'type': 3, 'value': 60},
@@ -40,8 +40,8 @@ const masteryMockData = [
     'studied': true
   },
   {
-    'timestamps': 1569254400,
-    'detail': [
+    'timestamp': 1569254400,
+    'details': [
       {'type': 1, 'value': 40},
       {'type': 2, 'value': 50},
       {'type': 3, 'value': 60},
@@ -50,8 +50,8 @@ const masteryMockData = [
     'studied': true
   },
   {
-    'timestamps': 1569340800,
-    'detail': [
+    'timestamp': 1569340800,
+    'details': [
       {'type': 1, 'value': 40},
       {'type': 2, 'value': 50},
       {'type': 3, 'value': 60},
@@ -60,8 +60,8 @@ const masteryMockData = [
     'studied': true
   },
   {
-    'timestamps': 1571356800,
-    'detail': [
+    'timestamp': 1571875200,
+    'details': [
       {'type': 1, 'value': 100},
       {'type': 2, 'value': 80},
       {'type': 3, 'value': 90},
