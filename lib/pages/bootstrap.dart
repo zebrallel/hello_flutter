@@ -6,8 +6,9 @@ class BootstrapPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Layout(
       child: Container(
-        padding: EdgeInsets.all(20),
-        child: Text('bootstrap'),
+        alignment: Alignment.center,
+        child: Text('Hello Flutter',
+            style: TextStyle(fontSize: 26, color: Color(0xff25222d))),
       ),
     );
   }
