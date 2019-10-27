@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hello_world/config.dart';
 
-final routeKeys = routeConfigs.keys.toList();
+final routeKeys = routeConfigs.keys.toList().reversed.toList();
 
 class RoutePage extends StatelessWidget {
   _onItemClick(BuildContext context, WidgetBuilder builder) {
