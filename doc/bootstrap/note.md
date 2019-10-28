@@ -2,16 +2,15 @@
 
 dart framework
 
-2. 开发方案
+# Dart
 
-纯flutter
-原生应用混合
+final & const
 
-3. dart
 
-语法简介
 
-4. 与原生通信
+var & dynamic
+
+# 与原生通信
 
 MethodChannel：方法调用
 EventChannel：事件监听
