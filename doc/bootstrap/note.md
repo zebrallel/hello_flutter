@@ -6,7 +6,8 @@ dart framework
 
 final & const
 
-
+const: 意味着编译时完全确定，并且不可变
+final: 类似于js中的const
 
 var & dynamic
 
