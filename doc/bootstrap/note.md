@@ -11,6 +11,13 @@ final: 类似于js中的const
 
 var & dynamic
 
+var: 第一次执行后会确定类型，之后不可再改变
+dynamic: 动态类型，类型不固定
+
+Future, Stream, Generator
+
+abstract, implement, with, mixin
+
 # 与原生通信
 
 MethodChannel：方法调用
