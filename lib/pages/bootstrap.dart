@@ -33,8 +33,8 @@ class BootstrapPageState extends State<BootstrapPage> {
                   });
                 },
               ),
-              if( count % 2 == 0) _SubClass(count),
-              // _SubClass(count),
+              // if( count % 2 == 0) _SubClass(count),
+              _SubClass(count),
               Text('Flutter',
                   style: TextStyle(fontSize: 26, color: Color(0xff25222d)))
             ],
@@ -66,7 +66,7 @@ class _SubClassState extends State<_SubClass> {
   void didUpdateWidget(_SubClass oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    print('did update widget, ${oldWidget.count}, ${widget.count}');
+    print('did update widget, ${oldWidget.count}, ${widget.count}, ${oldWidget == widget}');
   }
 
   @override

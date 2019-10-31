@@ -22,3 +22,14 @@ dart里没有interface
 
 implements: 实现这个class内的所有方法和变量
 with: 使用mixin, mixin on 可以指定其必须继承的父类
+
+# Life cycle
+
+createState
+initState
+
+didUpdateWidget
+
+didChangeDependencies
+deactive
+dipose
