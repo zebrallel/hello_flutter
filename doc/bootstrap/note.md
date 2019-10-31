@@ -16,10 +16,9 @@ dynamic: 动态类型，类型不固定
 
 ### Future, Stream, Generator
 
-
-
 ### abstract, implement, with, mixin
 
-5. widget, element, renderObject
+dart里没有interface
 
-6. layout
+implements: 实现这个class内的所有方法和变量
+with: 使用mixin, mixin on 可以指定其必须继承的父类

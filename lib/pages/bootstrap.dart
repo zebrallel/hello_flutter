@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/components/layout.dart';
 
-class BootstrapPage extends StatelessWidget {
+class BootstrapPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return BootstrapPageState();
+  }
+}
+
+class BootstrapPageState extends State<BootstrapPage>{
   @override
   Widget build(BuildContext context) {
     return Layout(
