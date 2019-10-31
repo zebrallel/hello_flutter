@@ -1,34 +1,46 @@
-import 'dart:collection';
+import 'dart:async';
 
 void futureTest() async {
-  print('start');
-  await delay(3);
-  print('end');
-
-  var foo = Foo();  
-
-  for(int i in foo){
-
+  // readFile();
+  for (var i in counter(5)) {
+    print(i);
+  }
+  await for(var i in counterAsync(5)){
+    print(i);
   }
 }
 
-Future delay(secs){
-  return Future.delayed(Duration(seconds: secs));
+Future delay(int seconds) {
+  return Future.delayed(Duration(seconds: seconds));
 }
 
-class Foo extends ListBase{
-  @override
-  int length;
-
-  @override
-  operator [](int index) {
-    // TODO: implement []
-    return null;
+Iterable<int> counter(int end) sync* {
+  int i = 0;
+  while (i < end) {
+    yield i++;
   }
-
-  @override
-  void operator []=(int index, value) {
-    // TODO: implement []=
-  }
-
 }
+
+Stream<int> counterAsync(int end) async*{
+  int i = 0;
+  while (i < end) {
+     await  delay(1);
+     yield i++;
+  }
+}
+
+// Future readFile() async {
+//   var config = File('../config.txt');
+//   Stream<List<int>> inputStream = config.openRead();
+
+//   var lines = inputStream.transform(utf8.decoder).transform(LineSplitter());
+
+//   try {
+//     await for (var line in lines) {
+//       print(line);
+//     }
+//     print('file closed');
+//   } catch (e) {
+//     print(e);
+//   }
+// }
