@@ -43,3 +43,7 @@ renderObject：保存大量绘制相关的信息
 # Layout
 
 https://zhuanlan.zhihu.com/p/51961551
+
+# 感受 
+
+1. 原生集成的方式调试不便
