@@ -33,3 +33,13 @@ didUpdateWidget
 didChangeDependencies
 deactive
 dipose
+
+# Widget & Element & RenderObject
+
+widget: immutable对象，每次state发生变化都会创建一个新的widget
+element: 持有（widget，renderObject)，保存上下文信息
+renderObject：保存大量绘制相关的信息
+
+# Layout
+
+https://zhuanlan.zhihu.com/p/51961551

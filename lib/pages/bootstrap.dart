@@ -35,8 +35,8 @@ class BootstrapPageState extends State<BootstrapPage> {
               ),
               // if( count % 2 == 0) _SubClass(count),
               _SubClass(count),
-              Text('Flutter',
-                  style: TextStyle(fontSize: 26, color: Color(0xff25222d)))
+              Text('abc',
+                  style: TextStyle(fontSize: 12, color: Color(0xff25222d)))
             ],
           )),
     );
