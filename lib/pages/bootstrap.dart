@@ -33,10 +33,18 @@ class BootstrapPageState extends State<BootstrapPage> {
                   });
                 },
               ),
-              // if( count % 2 == 0) _SubClass(count),
-              _SubClass(count),
+              if (count % 2 == 0)
+                _SubClass(count),
+              // _SubClass(count),
               Text('abc',
-                  style: TextStyle(fontSize: 12, color: Color(0xff25222d)))
+                  style: TextStyle(fontSize: 12, color: Color(0xff25222d))),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                    minWidth: 50, maxWidth: 100, minHeight: 50, maxHeight: 200),
+                child: Container(
+                  color: Color(0xffff3300),
+                ),
+              )
             ],
           )),
     );
@@ -54,7 +62,14 @@ class _SubClass extends StatefulWidget {
   }
 }
 
-class _SubClassState extends State<_SubClass> {
+class _SubClassState extends State<_SubClass> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addObserver(this); // 注册监听器
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -66,7 +81,8 @@ class _SubClassState extends State<_SubClass> {
   void didUpdateWidget(_SubClass oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    print('did update widget, ${oldWidget.count}, ${widget.count}, ${oldWidget == widget}');
+    print(
+        'did update widget, ${oldWidget.count}, ${widget.count}, ${oldWidget == widget}');
   }
 
   @override
@@ -78,13 +94,18 @@ class _SubClassState extends State<_SubClass> {
 
   @override
   void dispose() {
-    super.dispose();
-
+    WidgetsBinding.instance.removeObserver(this); // 移除监听器
     print('dispose');
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Text('sub class count: ${widget.count}');
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print("app state: $state");
   }
 }
