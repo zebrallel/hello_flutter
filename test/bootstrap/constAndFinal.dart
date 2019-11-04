@@ -1,10 +1,8 @@
 void constAndFinalTest() {
   /// 1. 编译时必须确定，任何runtime时得到的值无法获取
   const a = [
-    123,
     'hello',
     [
-      234,
       // DateTime.now() // const修饰的对象内部所有的子对象都必须是const的
     ],
   ];

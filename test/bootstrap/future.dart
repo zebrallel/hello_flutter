@@ -1,13 +1,14 @@
 import 'dart:async';
 
 void futureTest() async {
-  // readFile();
   for (var i in counter(5)) {
     print(i);
   }
+  // 0 1 2 3 4
   await for(var i in counterAsync(5)){
     print(i);
   }
+  // 0 1 2 3 4
 }
 
 Future delay(int seconds) {
