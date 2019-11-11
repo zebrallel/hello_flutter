@@ -58,8 +58,8 @@ class StackedBarChart extends StatelessWidget {
             //       position: charts.BehaviorPosition.end, desiredMaxRows: 3)
             // ],
             defaultRenderer: charts.BarRendererConfig(
-                stackHorizontalSeparator: 0,
                 strokeWidthPx: 0,
+                fillPattern: charts.FillPatternType.solid,
                 groupingType: charts.BarGroupingType.stacked,
                 barRendererDecorator: new charts.BarLabelDecorator<String>(
                     labelPosition: charts.BarLabelPosition.outside,

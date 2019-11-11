@@ -13,7 +13,7 @@ class MasteryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Layout(
       child: Container(
-          height: 290, padding: EdgeInsets.all(20), child: EmptyMasteryBlock()),
+          padding: EdgeInsets.all(20), child: MasteryBlock()),
     );
   }
 }
@@ -165,7 +165,6 @@ class MasteryBlock extends StatelessWidget {
             defaultInteractions: false,
             defaultRenderer: charts.BarRendererConfig(
               cornerStrategy: charts.ConstCornerStrategy(3),
-              strokeWidthPx: 1,
               groupingType: charts.BarGroupingType.stacked,
               barRendererDecorator: cbld.BarLabelDecorator(
                   labelMaxWidth: 40,

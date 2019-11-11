@@ -1,20 +1,47 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hello_world/components/layout.dart';
 
 class ConstructorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Demo d = Demo('Mike');
-    print(d);
-
-    Demo e = Demo('kitty');
-    print(e);
-
-    DemoParent f = DemoParent.consTwo('666');
-    print(f);
     return Layout(
       child: Center(
-        child: Text('check in console'),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Column(
+              children: List<Widget>.generate(1, (index) {
+                return Container(
+                  child: Text(
+                    '$index. 这是一个比较长长长长\n长长长的文本',
+                    // style: TextStyle(fontSize: 20, height: 1),
+                    strutStyle: StrutStyle(
+                      fontSize: 40,
+                      height: 1,
+                      
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black, width: 0),
+                  ),
+                );
+              }),
+            ),
+            Column(
+              children: List<Widget>.generate(7, (_) {
+                return Container(
+                  height: 20,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    border: Border.all(color: Colors.black, width: 0),
+                  ),
+                );
+              }),
+            )
+          ],
+        ),
       ),
     );
   }

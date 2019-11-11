@@ -36,14 +36,13 @@ class BootstrapPageState extends State<BootstrapPage> {
               if (count % 2 == 0)
                 _SubClass(count),
               // _SubClass(count),
-              Text('abc',
-                  style: TextStyle(fontSize: 12, color: Color(0xff25222d))),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                    minWidth: 50, maxWidth: 100, minHeight: 50, maxHeight: 200),
-                child: Container(
-                  color: Color(0xffff3300),
-                ),
+              Container(
+                width: 200,
+                color: Color(0xffaabbcc),
+                child: Text('邻居邻居邻居邻居\n 邻居邻居兰',
+                textScaleFactor: 1,
+                    style: TextStyle(
+                        fontSize: 20, color: Color(0xff25222d), height: 1)),
               )
             ],
           )),

@@ -36,6 +36,8 @@ class VocabProgressBar extends CustomPainter {
       ..color = Color(0xffe9e8ea)
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 6;
+
+
     final totalLine = Paint()
       ..style = PaintingStyle.fill
       ..color = Color(0xffffca29);
