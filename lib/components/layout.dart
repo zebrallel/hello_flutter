@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Layout extends StatelessWidget {
-  const Layout({@required this.child});
-  final Widget child;
+  Layout({@required this.child, this.padding = 0});
+
+  Widget child;
+  double padding;
 
   @override
   Widget build(BuildContext context) {
+    print('padding: $padding');
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: true,
@@ -16,6 +19,9 @@ class Layout extends StatelessWidget {
             onPressed: () => Navigator.pop(context, false),
           ),
         ),
-        body: this.child);
+        body: Padding(
+          padding: EdgeInsets.all(padding),
+          child: child,
+        ));
   }
 }
