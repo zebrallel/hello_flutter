@@ -13,7 +13,7 @@ class MasteryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Layout(
       child: Container(
-          padding: EdgeInsets.all(20), child: MasteryBlock()),
+          padding: EdgeInsets.all(20), child: EmptyMasteryBlock()),
     );
   }
 }

@@ -33,8 +33,6 @@ class UIPage extends StatelessWidget {
                       minHeight: 150,
                       minWidth: 150),
                   child: Container(
-                    width: 100,
-                    height: 100,
                     color: Colors.blue,
                     child: Center(
                       child: Text(
@@ -69,11 +67,9 @@ class UIPage extends StatelessWidget {
                               child: Container(
                                   width: 50, height: 50, color: Colors.yellow),
                             ),
-                            Positioned(
-                              left: 20,
-                              top: 60,
+                            Padding(
+                              padding: EdgeInsets.only(left: 20, top: 50),
                               child: Container(
-                                width: 300,
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color: Colors.black, width: 1)),

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:charts_common/src/chart/cartesian/axis/spec/ordinal_axis_spec.dart'
     show FixedPixelOrdinalScaleSpec;
+import 'package:auto_size_text/auto_size_text.dart';
 
 class EmptyMasteryBlock extends StatelessWidget {
   static List<charts.Series<EmptyModel, String>> _createSeries() {
@@ -78,11 +79,12 @@ class EmptyMasteryBlock extends StatelessWidget {
         Positioned(
             top: 100,
             child: SizedBox(
-                width: 156,
+                width: 180,
                 child: Wrap(
                   runAlignment: WrapAlignment.center,
                   children: <Widget>[
-                    Text('     完成单词专项训练，\n可解锁你的词汇掌握度哦～',
+                    AutoSizeText('词汇掌握度功能正在开发中，\n敬请期待 ～',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 13,
                             color: Color(0xff7c7a81),
