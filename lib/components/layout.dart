@@ -9,7 +9,6 @@ class Layout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('padding: $padding');
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: true,

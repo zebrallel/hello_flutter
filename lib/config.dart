@@ -10,6 +10,7 @@ import 'package:hello_world/pages/layout.dart';
 import 'package:hello_world/pages/charts/line_slide_chart.dart';
 import 'package:hello_world/pages/paint.dart';
 import 'package:hello_world/pages/charts/stack_bar_chart.dart';
+import 'package:hello_world/pages/provider.dart';
 import 'package:hello_world/pages/ui.dart';
 import 'package:hello_world/pages/vocabulary/vocabulary.dart';
 
@@ -27,5 +28,6 @@ final routeConfigs = {
   '我的词汇量': (context) => VocabularyPage(),
   '掌握度解释': (context) => ExplanationPage(),
   'bootstrap': (context) => BootstrapPage(),
-  'ui page': (context) => UIPage()
+  'ui page': (context) => UIPage(),
+  'Provider': (context) => ProviderPage()
 };
