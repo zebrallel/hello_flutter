@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 /// 定义一个Model
 class CounterModel with ChangeNotifier {
-  int _count = 0;
+  int _count = 10;
   int get value => _count;
 
   void increment() {
@@ -14,11 +14,16 @@ class CounterModel with ChangeNotifier {
 }
 
 class ProviderPage extends StatelessWidget {
+  final _cm = CounterModel();
+  
   @override
   Widget build(BuildContext context) {
-    return Provider<int>.value(
-      value: 100,
-      child: App(),
+    return ChangeNotifierProvider.value(
+      value: _cm,
+      child: MaterialApp(
+        theme: ThemeData.dark(),
+        home: App()
+      ),
     );
   }
 }
@@ -27,8 +32,6 @@ class ProviderPage extends StatelessWidget {
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print(Provider.of<int>(context));
-
     return Layout(
       padding: 20,
       child: Container(
@@ -39,7 +42,7 @@ class App extends StatelessWidget {
             children: <Widget>[
               RaisedButton(
                 onPressed: () {
-                  Navigator.of(context).push(
+                  Navigator.push(context,
                       MaterialPageRoute(builder: (context) => CounterA()));
                 },
                 child: Text('Counter A'),
@@ -57,19 +60,22 @@ class App extends StatelessWidget {
   }
 }
 
+// 使用Provider.of，当数据变化后整个build会重新调用
 class CounterA extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('Counter A build!');
-    final count = Provider.of<int>(context);
+    final cm = Provider.of<CounterModel>(context);
 
     return Layout(
         child: Center(
             child: Column(
       children: <Widget>[
-        Text('Counter A with $count'),
+        Text('Counter A with ${cm._count}'),
         RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            cm.increment();
+          },
           child: Text('Add 1'),
         )
       ],
@@ -77,6 +83,7 @@ class CounterA extends StatelessWidget {
   }
 }
 
+/// 使用Consumer我们实现了只刷新局部
 class CounterB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
