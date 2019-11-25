@@ -4,6 +4,7 @@ import 'package:hello_world/pages/charts/chart_selection_callback.dart';
 import 'package:hello_world/pages/charts/charts.dart';
 import 'package:hello_world/pages/constructor.dart';
 import 'package:hello_world/pages/counter.dart';
+import 'package:hello_world/pages/flow.dart';
 import 'package:hello_world/pages/knowledge/explanation.dart';
 import 'package:hello_world/pages/knowledge/mastery.dart';
 import 'package:hello_world/pages/layout.dart';
@@ -29,5 +30,6 @@ final routeConfigs = {
   '掌握度解释': (context) => ExplanationPage(),
   'bootstrap': (context) => BootstrapPage(),
   'ui page': (context) => UIPage(),
-  'Provider': (context) => ProviderPage()
+  'Provider': (context) => ProviderPage(),
+  'flow page': (context) => FlowPage()
 };
