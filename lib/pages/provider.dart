@@ -15,15 +15,12 @@ class CounterModel with ChangeNotifier {
 
 class ProviderPage extends StatelessWidget {
   final _cm = CounterModel();
-  
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
       value: _cm,
-      child: MaterialApp(
-        theme: ThemeData.dark(),
-        home: App()
-      ),
+      child: MaterialApp(theme: ThemeData.dark(), home: App()),
     );
   }
 }
@@ -53,6 +50,12 @@ class App extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => CounterB()));
                 },
                 child: Text('Counter B'),
+              ),
+              Hero(
+                tag: 'imageHero',
+                child: Image.network(
+                  'https://picsum.photos/250?image=9',
+                ),
               )
             ],
           )),
@@ -77,6 +80,12 @@ class CounterA extends StatelessWidget {
             cm.increment();
           },
           child: Text('Add 1'),
+        ),
+        Hero(
+          tag: 'imageHero',
+          child: Image.network(
+            'https://picsum.photos/250?image=9',
+          ),
         )
       ],
     )));
