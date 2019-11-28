@@ -19,7 +19,6 @@ import 'package:hello_world/pages/vocabulary/vocabulary.dart';
 
 final routeConfigs = {
   'counter': (context) => CounterPage(),
-  'MultiChildLayoutDelegate': (context) => LayoutPage(),
   'Text line height demo': (context) => ConstructorPage(),
   'progress circle': (context) => ProgressCirclePage(),
   'bar chart': (context) => ChartsPage(),
@@ -35,5 +34,6 @@ final routeConfigs = {
   'Provider': (context) => ProviderPage(),
   'flow page': (context) => FlowPage(),
   '我的学习计划': (context) => StudyPlans(),
-  'CustomScrollView': (context) => CustomScrollViewPage()
+  'CustomScrollView': (context) => CustomScrollViewPage(),
+  'MultiChildLayoutDelegate': (context) => LayoutPage(),
 };

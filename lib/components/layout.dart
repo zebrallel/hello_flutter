@@ -15,7 +15,7 @@ class Layout extends StatelessWidget {
           title: Text('Playground'),
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
-            onPressed: () => Navigator.pop(context, false),
+            onPressed: () => Navigator.maybePop(context)
           ),
         ),
         body: Padding(
