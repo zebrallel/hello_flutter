@@ -4,6 +4,7 @@ import 'package:hello_world/pages/charts/chart_selection_callback.dart';
 import 'package:hello_world/pages/charts/charts.dart';
 import 'package:hello_world/pages/constructor.dart';
 import 'package:hello_world/pages/counter.dart';
+import 'package:hello_world/pages/customScrollView.dart';
 import 'package:hello_world/pages/flow.dart';
 import 'package:hello_world/pages/knowledge/explanation.dart';
 import 'package:hello_world/pages/knowledge/mastery.dart';
@@ -33,5 +34,6 @@ final routeConfigs = {
   'ui page': (context) => UIPage(),
   'Provider': (context) => ProviderPage(),
   'flow page': (context) => FlowPage(),
-  '我的学习计划': (context) => StudyPlans()
+  '我的学习计划': (context) => StudyPlans(),
+  'CustomScrollView': (context) => CustomScrollViewPage()
 };
