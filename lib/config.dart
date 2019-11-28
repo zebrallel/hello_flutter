@@ -12,6 +12,7 @@ import 'package:hello_world/pages/charts/line_slide_chart.dart';
 import 'package:hello_world/pages/paint.dart';
 import 'package:hello_world/pages/charts/stack_bar_chart.dart';
 import 'package:hello_world/pages/provider.dart';
+import 'package:hello_world/pages/study_plans/study_plans.dart';
 import 'package:hello_world/pages/ui.dart';
 import 'package:hello_world/pages/vocabulary/vocabulary.dart';
 
@@ -31,5 +32,6 @@ final routeConfigs = {
   'bootstrap': (context) => BootstrapPage(),
   'ui page': (context) => UIPage(),
   'Provider': (context) => ProviderPage(),
-  'flow page': (context) => FlowPage()
+  'flow page': (context) => FlowPage(),
+  '我的学习计划': (context) => StudyPlans()
 };

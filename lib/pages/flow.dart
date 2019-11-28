@@ -1,56 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/components/box.dart';
 import 'package:hello_world/components/layout.dart';
 
 class FlowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Widget> tasks = [];
-
-    for (var i = 0; i < 10; i++) {
-      tasks.add(
-        SizedBox(
-          width: double.infinity,
-          height: 100,
-          child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(4)),
-            ),
-          ),
-        ),
-      );
-    }
     return Layout(
         padding: 20,
-        child: Container(
+        child: Box(
             width: double.infinity,
-            height: 500,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.white, width: 1),
-                borderRadius: BorderRadius.circular(4)),
-            child: Row(
-              children: <Widget>[
-                CustomPaint(
-                  size: Size(100, double.infinity),
-                  key: GlobalKey(),
-                  painter: TimeLine(),
-                ),
-                Expanded(
-                  child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          left: BorderSide(width: 1, color: Colors.white),
-                        ),
-                      ),
-                      child: SingleChildScrollView(
-                        child: Column(children: tasks),
-                      )),
-                )
-              ],
+            bordered: true,
+            child: ListView.builder(
+              itemCount: 15,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Box(
+                    width: double.infinity,
+                    height: 80,
+                    bordered: true,
+                  ),
+                );
+              },
             )));
   }
 }
