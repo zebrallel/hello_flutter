@@ -1,70 +1,94 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/components/layout.dart';
+import 'package:flutter/scheduler.dart';
 
-class CounterPage extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key key, this.title}) : super(key: key);
+  final String title;
+
   @override
-  State<StatefulWidget> createState() {
-    return new _CounterState();
-  }
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _CounterState extends State<CounterPage> {
-  int _count;
+class _MyHomePageState extends State<MyHomePage> {
+  final controller = ScrollController();
+  OverlayEntry sticky;
+  GlobalKey stickyKey = GlobalKey();
 
   @override
   void initState() {
+    if (sticky != null) {
+      sticky.remove();
+    }
+    sticky = OverlayEntry(
+      opaque: false,
+      // lambda created to help working with hot-reload
+      builder: (context) => stickyBuilder(context),
+    );
+
+    // not possible inside initState
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      Overlay.of(context).insert(sticky);
+    });
     super.initState();
-
-    this._count = 0;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Layout(
-        child: Center(
-            child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text('Count: ${this._count}'),
-        RaisedButton(
-          child: Text('add count'),
-          onPressed: () {
-            setState(() {
-              this._count++;
-            });
-          },
-        )
-      ],
-    )));
-  }
-
-  @override
-  void didUpdateWidget(CounterPage oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    print("didUpdateWidget");
-  }
-
-  @override
-  void deactivate() {
-    super.deactivate();
-    print("deactive");
   }
 
   @override
   void dispose() {
+    // remove possible overlays on dispose as they would be visible even after [Navigator.push]
+    sticky.remove();
     super.dispose();
-    print("dispose");
   }
 
   @override
-  void reassemble() {
-    super.reassemble();
-    print("reassemble");
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView.builder(
+        controller: controller,
+        itemBuilder: (context, index) {
+          if (index == 6) {
+            return Container(
+              key: stickyKey,
+              height: 100.0,
+              color: Colors.green,
+              child: const Text("I'm fat"),
+            );
+          }
+          return ListTile(
+            title: Text(
+              'Hello $index',
+              style: const TextStyle(color: Colors.white),
+            ),
+          );
+        },
+      ),
+    );
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print("didChangeDependencies");
+  Widget stickyBuilder(BuildContext context) {
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (_,Widget child) {
+        final keyContext = stickyKey.currentContext;
+        if (keyContext != null) {
+          // widget is visible
+          final box = keyContext.findRenderObject() as RenderBox;
+          final pos = box.localToGlobal(Offset.zero);
+          return Positioned(
+            top: pos.dy + box.size.height,
+            left: 50.0,
+            right: 50.0,
+            height: box.size.height,
+            child: Material(
+              child: Container(
+                alignment: Alignment.center,
+                color: Colors.purple,
+                child: const Text("^ Nah I think you're okay"),
+              ),
+            ),
+          );
+        }
+        return Container();
+      },
+    );
   }
 }
