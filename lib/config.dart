@@ -1,3 +1,4 @@
+import 'package:hello_world/pages/animation/animation.dart';
 import 'package:hello_world/pages/bootstrap.dart';
 import 'package:hello_world/pages/charts/basic_bar_chart.dart';
 import 'package:hello_world/pages/charts/chart_selection_callback.dart';
@@ -30,5 +31,6 @@ final routeConfigs = {
   'ScrollToDemo': (context) => FlowPage(),
   'CustomScrollView': (context) => CustomScrollViewPage(),
   'MultiChildLayoutDelegate': (context) => LayoutPage(),
-  'Navigator Demo': (context) => NavigatorDemoPage()
+  'Navigator Demo': (context) => NavigatorDemoPage(),
+  "Animations": (context) => AnimationPage()
 };
