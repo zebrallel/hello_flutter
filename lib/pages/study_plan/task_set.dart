@@ -1,31 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/components/layout.dart';
+import 'package:hello_world/pages/study_plan/models.dart';
 
-class StudyPlans extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return StudyPlansState();
-  }
-}
+class TaskSet extends StatelessWidget {
+  final int index;
+  final List<Task> tasks;
 
-class StudyPlansState extends State<StudyPlans> {
+  TaskSet({this.index, this.tasks});
+
   @override
   Widget build(BuildContext context) {
-    return Layout(
-        child: SingleChildScrollView(
-            child: Column(
-      children: <Widget>[
-        Container(
-          width: double.infinity,
-          height: 200,
-          color: Color(0xffaabbcc),
-          child: Center(
-            child: Text('我们的学习计划', style: TextStyle(color: Colors.black)),
-          ),
-        ),
-        TasksTimeline()
-      ],
-    )));
+    return Container(
+      margin: EdgeInsets.only(bottom: 20),
+      height: 600,
+      color: Colors.teal,
+      child: Center(child: Text('Tesk Set')),
+    );
   }
 }
 
