@@ -1,27 +1,27 @@
 const mockTaskSets = [
   {
     "id": "1",
-    "status": 0,
+    "status": 1,
     "tasks": [
       {
         "id": "1",
-        "status": 0,
-        "type": 0,
+        "status": 1,
+        "type": 1,
         "resourceId": "MDNmZTgwMDAwMDAwMDAwZg==",
         "subTasks": [
-          {"id": "1", "status": 0, "type": 0},
-          {"id": "2", "status": 0, "type": 1},
-          {"id": "3", "status": 0, "type": 2},
-          {"id": "4", "status": 0, "type": 3},
+          {"id": "1", "status": 1, "type": 1},
+          {"id": "2", "status": 1, "type": 2},
+          {"id": "3", "status": 1, "type": 3},
+          {"id": "4", "status": 1, "type": 4},
         ]
       },
       {
         "id": "2",
-        "status": 0,
-        "type": 1,
+        "status": 1,
+        "type": 2,
         "resourceId": "MDNmZTgwMDAwMDAwMDAwZg==",
         "subTasks": [
-          {"id": "1", "status": 0, "type": 1},
+          {"id": "1", "status": 1, "type": 1},
         ]
       },
     ]

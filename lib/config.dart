@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:hello_world/components/layout.dart';
 import 'package:hello_world/pages/animation/animation.dart';
 import 'package:hello_world/pages/charts/basic_bar_chart.dart';
 import 'package:hello_world/pages/counter.dart';
@@ -13,6 +15,7 @@ import 'package:hello_world/pages/ui.dart';
 import 'package:hello_world/pages/vocabulary/vocabulary.dart';
 
 final routeConfigs = {
+  'AnyThing': (context) => AnyThing(),
   '柱状图': (context) => BasicBarChartPage(),
   '掌握度': (context) => MasteryPage(),
   '我的词汇量': (context) => VocabularyPage(),
@@ -27,3 +30,28 @@ final routeConfigs = {
   'Navigator Demo': (context) => NavigatorDemoPage(),
   "Animations": (context) => AnimationPage()
 };
+
+class AnyThing extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Layout(
+        padding: 20,
+        child: SingleChildScrollView(
+          child: Row(
+            children: <Widget>[
+              Container(
+                width: 100,
+                color: Colors.teal,
+              ),
+              Expanded(
+                  child: Container(
+                margin: EdgeInsets.only(left: 10),
+                width: double.infinity,
+                height: 500,
+                color: Colors.cyan,
+              ))
+            ],
+          ),
+        ));
+  }
+}

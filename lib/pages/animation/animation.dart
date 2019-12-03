@@ -7,8 +7,8 @@ class AnimationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Animation',
       home: Scaffold(
+        appBar: AppBar(title: Text('Animation'),),
         body: _Home(),
       ),
       routes: {

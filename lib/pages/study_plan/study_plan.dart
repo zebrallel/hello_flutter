@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/components/layout.dart';
+import 'package:hello_world/pages/study_plan/models.dart';
+import 'package:hello_world/pages/study_plan/study_plan_vm.dart';
 import 'package:hello_world/pages/study_plan/task_set.dart';
 
 class StudyPlanPage extends StatefulWidget {
@@ -10,6 +12,16 @@ class StudyPlanPage extends StatefulWidget {
 }
 
 class StudyPlanState extends State<StudyPlanPage> {
+  List<TaskSet> taskSets = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    var vm = StudyPlanVM();
+    taskSets = vm.initData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Layout(
@@ -17,7 +29,7 @@ class StudyPlanState extends State<StudyPlanPage> {
         alignment: Alignment.topLeft,
         children: <Widget>[
           ListView.builder(
-            itemCount: 3,
+            itemCount: taskSets.length + 1,
             itemBuilder: (BuildContext context, int index) {
               if (index == 0) {
                 return Container(
@@ -28,7 +40,9 @@ class StudyPlanState extends State<StudyPlanPage> {
                   ),
                 );
               } else {
-                return TaskSet();
+                return TaskSetWidget(
+                  taskSet: taskSets[index - 1]
+                );
               }
             },
           )

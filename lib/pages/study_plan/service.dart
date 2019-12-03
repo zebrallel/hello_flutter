@@ -3,6 +3,10 @@ import 'package:hello_world/pages/study_plan/models.dart';
 
 class StudyPlanService {
   static List<TaskSet> getTaskSets(){
-    return mockTaskSets.map((_) => TaskSet.fromJson(_));
+    return mockTaskSets.map((_) => TaskSet.fromJson(_)).toList();
+  }
+
+  static Resource getResource(String contentId){
+    return Resource.fromJson(mockResourceDetail);
   }
 }
