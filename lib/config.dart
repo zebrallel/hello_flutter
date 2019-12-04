@@ -10,6 +10,7 @@ import 'package:hello_world/pages/knowledge/mastery.dart';
 import 'package:hello_world/pages/layout.dart';
 import 'package:hello_world/pages/navigator.dart';
 import 'package:hello_world/pages/provider.dart';
+import 'package:hello_world/pages/study_plan/bootstrap.dart';
 import 'package:hello_world/pages/study_plan/study_plan.dart';
 import 'package:hello_world/pages/ui.dart';
 import 'package:hello_world/pages/vocabulary/vocabulary.dart';
@@ -28,7 +29,8 @@ final routeConfigs = {
   'CustomScrollView': (context) => CustomScrollViewPage(),
   'MultiChildLayoutDelegate': (context) => LayoutPage(),
   'Navigator Demo': (context) => NavigatorDemoPage(),
-  "Animations": (context) => AnimationPage()
+  "Animations": (context) => AnimationPage(),
+  'Study Plan Bootstrap': (context) => StudyPlanBootstrap()
 };
 
 class AnyThing extends StatelessWidget {
