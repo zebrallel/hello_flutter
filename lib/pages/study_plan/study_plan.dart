@@ -33,7 +33,7 @@ class StudyPlanState extends State<StudyPlanPage> {
             itemBuilder: (BuildContext context, int index) {
               if (index == 0) {
                 return Container(
-                  height: 200,
+                  height: 300,
                   color: Colors.cyan,
                   child: Center(
                     child: Text('Head Area'),

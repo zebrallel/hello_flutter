@@ -29,7 +29,7 @@ class TaskSetWidget extends StatelessWidget {
             fit: BoxFit.fill,
           ),
           Padding(
-              padding: EdgeInsets.only(left: 10, bottom: 10),
+              padding: EdgeInsets.only(left: 10, bottom: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -64,6 +64,37 @@ class TaskSetWidget extends StatelessWidget {
 
   List<Widget> buildSubTasks(List<Subtask> subtasks) {
     return subtasks.map((subTask) {
+      Widget rightContent = Container();
+
+      if (subTask.current) {
+        rightContent = Container(
+          height: 28,
+          width: 72,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Color.fromRGBO(255, 202, 41, 1)),
+          child: Center(
+            child: Text(
+              '开始学习',
+              style:
+                  TextStyle(color: Color.fromRGBO(37, 34, 45, 1), fontSize: 12),
+            ),
+          ),
+        );
+      } else if (subTask.status == StatusType.FINISHED) {
+        rightContent = Image.asset(
+          'assets/images/iconCompleteYellowLight24@2x.png',
+          width: 24,
+          height: 24,
+        );
+      } else if (subTask.status == StatusType.PEDNING) {
+        rightContent = Image.asset(
+          'assets/images/18@2x.png',
+          width: 18,
+          height: 18,
+        );
+      }
+
       return Container(
           padding: EdgeInsets.fromLTRB(20, 18, 20, 18),
           margin: EdgeInsets.fromLTRB(0, 10, 40, 10),
@@ -84,20 +115,7 @@ class TaskSetWidget extends StatelessWidget {
                     style: TextStyle(
                         color: Color.fromRGBO(37, 34, 45, 1), fontSize: 15)),
               ),
-              Container(
-                height: 28,
-                width: 72,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color.fromRGBO(255, 202, 41, 1)),
-                child: Center(
-                  child: Text(
-                    '开始学习',
-                    style: TextStyle(
-                        color: Color.fromRGBO(37, 34, 45, 1), fontSize: 12),
-                  ),
-                ),
-              )
+              rightContent
             ],
           ));
     }).toList();
@@ -105,10 +123,12 @@ class TaskSetWidget extends StatelessWidget {
 
   List<Widget> buildTask() {
     return this.taskSet.tasks.map((Task task) {
-      return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [buildTaskHead(task)]
-            ..addAll(buildSubTasks(task.subTasks)));
+      return Padding(
+          padding: EdgeInsets.only(top: 30),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [buildTaskHead(task)]
+                ..addAll(buildSubTasks(task.subTasks))));
     }).toList();
   }
 
@@ -125,11 +145,11 @@ class TaskSetWidget extends StatelessWidget {
             CustomPaint(
               key: GlobalKey(),
               size: Size(57, taskSetHeight),
-              painter: TimeLine(),
+              painter: TimeLine(tasks: taskSet.tasks),
             ),
             Expanded(
                 child: Padding(
-              padding: EdgeInsets.only(top: 50),
+              padding: EdgeInsets.only(top: 0),
               child: Column(children: buildTask()),
             ))
           ],
@@ -153,9 +173,64 @@ class TaskSetWidget extends StatelessWidget {
 }
 
 class TimeLine extends CustomPainter {
-  double gapLen = 150;
-  double headRadius = 5;
-  double subTaskRadius = 3;
+  final double startOffsetY = 58; // 起始点Y坐标
+  final double startGapLen = 60; // 起始连接线长度
+  final double pointLineGap = 10; // 点和线之间的间隔长度
+  final double subTaskGapLen = 75; // 子任务间接线长度
+  final double headRadius = 5; // 任务点半径
+  final double subTaskRadius = 3; // 子任务点半径
+
+  final Paint yellowPen = Paint()
+    ..style = PaintingStyle.fill
+    ..color = Color.fromRGBO(255, 202, 41, 1)
+    ..strokeWidth = 2;
+
+  final Paint greyPen = Paint()
+    ..style = PaintingStyle.fill
+    ..color = Color.fromRGBO(189, 188, 192, 1)
+    ..strokeWidth = 2;
+
+  final List<Task> tasks;
+
+  TimeLine({this.tasks});
+
+  void drawStartPoint(Canvas canvas, double offsetX) {
+    canvas.drawCircle(Offset(offsetX, startOffsetY), headRadius, yellowPen);
+    canvas.drawLine(Offset(offsetX, startOffsetY + pointLineGap),
+        Offset(offsetX, startOffsetY + pointLineGap + startGapLen), yellowPen);
+  }
+
+  void drawSubtasksPoints(
+      Canvas canvas, double offsetX, List<Subtask> subtasks) {
+    for (var i = 0; i < subtasks.length; i++) {
+      Subtask subtask = subtasks[i];
+      double subtaskPointOffset = subTaskGapLen + 2 * pointLineGap;
+      canvas.drawCircle(
+          Offset(
+              offsetX,
+              subtaskPointOffset * i +
+                  startOffsetY +
+                  pointLineGap * 2 +
+                  startGapLen),
+          subTaskRadius,
+          yellowPen);
+      canvas.drawLine(
+          Offset(
+              offsetX,
+              subtaskPointOffset * i +
+                  startOffsetY +
+                  pointLineGap * 3 +
+                  startGapLen),
+          Offset(
+              offsetX,
+              subtaskPointOffset * i +
+                  startOffsetY +
+                  pointLineGap * 3 +
+                  startGapLen +
+                  subTaskGapLen),
+          yellowPen);
+    }
+  }
 
   void drawDashedLine(
       Canvas canvas, Paint pen, double x, double startY, double endY) {
@@ -170,21 +245,10 @@ class TimeLine extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    double half = size.width / 2;
-    double lineEnd = 100;
+    double offsetX = size.width / 2 + 5;
 
-    Paint pen = Paint()
-      ..style = PaintingStyle.fill
-      ..color = Color(0xffffca29)
-      ..strokeWidth = 2;
-
-    canvas.drawCircle(Offset(half, lineEnd), headRadius, pen);
-    drawDashedLine(canvas, pen, half, lineEnd, lineEnd + gapLen);
-    canvas.drawCircle(Offset(half, lineEnd + gapLen), headRadius, pen);
-    drawDashedLine(canvas, pen, half, lineEnd, lineEnd + gapLen * 2);
-    canvas.drawCircle(Offset(half, lineEnd + gapLen * 2), headRadius, pen);
-    drawDashedLine(canvas, pen, half, lineEnd, lineEnd + gapLen * 3);
-    canvas.drawCircle(Offset(half, lineEnd + gapLen * 3), headRadius, pen);
+    drawStartPoint(canvas, offsetX);
+    drawSubtasksPoints(canvas, offsetX, tasks[0].subTasks);
   }
 
   @override

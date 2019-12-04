@@ -8,15 +8,14 @@ class StudyPlanVM extends ChangeNotifier {
   List<TaskSet> initData() {
     taskSets = StudyPlanService.getTaskSets();
 
-    taskSets.forEach((TaskSet taskSet) => {
-          taskSet.tasks = taskSet.tasks.map((Task task) {
-            Resource resource = StudyPlanService.getResource(task.contentId);
+    taskSets.forEach((TaskSet taskSet) {
+      taskSet.tasks = taskSet.tasks.map((Task task) {
+        Resource resource = StudyPlanService.getResource(task.contentId);
 
-            return task..setResource(resource);
-          }).toList()
-        });
+        return task..setResource(resource);
+      }).toList();
+    });
 
-    // _notify();
     return taskSets;
   }
 

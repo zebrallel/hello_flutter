@@ -80,11 +80,13 @@ class Subtask {
   String id;
   StatusType status;
   SubtaskType type;
+  bool current;
 
   Subtask.fromJson(json) {
     this.id = json['id'];
     this.status = StatusType.values[json['status'] ?? 0];
     this.type = SubtaskType.values[json['type'] ?? 0];
+    this.current = json['current'] ?? false;
   }
 }
 
