@@ -28,35 +28,48 @@ class TaskSetWidget extends StatelessWidget {
             height: 50,
             fit: BoxFit.fill,
           ),
-          Padding(
-              padding: EdgeInsets.only(left: 10, bottom: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(top: 3),
-                    width: 42,
-                    height: 20,
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(255, 202, 41, 0.2),
-                        borderRadius: BorderRadius.circular(3)),
-                    child: Center(
-                      child: Text(
-                          task.type == TaskType.INTENSIVE_READING ? '精读' : '泛读',
-                          style: TextStyle(
-                              color: Color.fromRGBO(230, 173, 0, 1),
-                              fontSize: 11)),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 5),
-                    child: Text(task.resource.title,
-                        style: TextStyle(
-                            color: Color.fromRGBO(37, 34, 45, 1),
-                            fontSize: 15)),
-                  )
-                ],
-              )),
+          Expanded(
+              child: Padding(
+                  padding: EdgeInsets.only(left: 10, bottom: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Container(
+                              child: Text('abc',
+                                  style: TextStyle(color: Colors.black)),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 3),
+                            width: 42,
+                            height: 20,
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 202, 41, 0.2),
+                                borderRadius: BorderRadius.circular(3)),
+                            child: Center(
+                              child: Text(
+                                  task.type == TaskType.INTENSIVE_READING
+                                      ? '精读'
+                                      : '泛读',
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(230, 173, 0, 1),
+                                      fontSize: 11)),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 5),
+                        child: Text(task.resource.title,
+                            style: TextStyle(
+                                color: Color.fromRGBO(37, 34, 45, 1),
+                                fontSize: 15)),
+                      )
+                    ],
+                  ))),
         ],
       );
     }

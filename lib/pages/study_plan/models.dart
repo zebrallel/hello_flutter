@@ -95,7 +95,7 @@ class Resource {
   String title;
 
   Resource.fromJson(json) {
-    this.coverUrl = json['coverUrl'];
+    this.coverUrl = json['book']['coverUrl'];
     this.title = json['title'];
   }
 }
