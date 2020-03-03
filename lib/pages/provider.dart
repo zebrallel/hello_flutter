@@ -20,7 +20,7 @@ class ProviderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
       value: _cm,
-      child: MaterialApp(theme: ThemeData.dark(), home: App()),
+      child: MaterialApp(theme: ThemeData.light(), home: App()),
     );
   }
 }
