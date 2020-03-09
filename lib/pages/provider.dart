@@ -13,6 +13,39 @@ class CounterModel with ChangeNotifier {
   }
 }
 
+class ProviderPageSecond extends StatelessWidget {
+  final _cm = CounterModel();
+
+  @override
+  Widget build(BuildContext context) {
+    return Layout(
+        padding: 20,
+        child: ChangeNotifierProvider.value(
+            value: _cm,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minWidth: double.infinity),
+              child: Column(
+                children: <Widget>[
+                  LayoutBuilder(builder: (context, constraints) {
+                    print(
+                        '${constraints.maxWidth}-${constraints.maxHeight}-${constraints.minWidth}-${constraints.minHeight}');
+                    final cm = Provider.of<CounterModel>(context);
+
+                    return Text('count: ${cm.value}');
+                  }),
+                  Text('count: ${_cm.value}'), // 如果不使用provider.of方案获取，将不会触发重绘
+                  RaisedButton(
+                    onPressed: () {
+                      _cm.increment();
+                    },
+                    child: Text('increment'),
+                  )
+                ],
+              ),
+            )));
+  }
+}
+
 class ProviderPage extends StatelessWidget {
   final _cm = CounterModel();
 
@@ -51,12 +84,6 @@ class App extends StatelessWidget {
                 },
                 child: Text('Counter B'),
               ),
-              Hero(
-                tag: 'imageHero',
-                child: Image.network(
-                  'https://picsum.photos/250?image=9',
-                ),
-              )
             ],
           )),
     );
