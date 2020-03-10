@@ -16,46 +16,65 @@ class Wrapper extends StatefulWidget {
 }
 
 class WrapperState extends State<Wrapper> {
-  String name = 'matt';
-  int age = 18;
+  Widget block = StoreWidget('matt', 18, LittleWidget());
 
   @override
   Widget build(BuildContext context) {
     return Layout(
       padding: 20,
-      child: StoreWidget(
-          name,
-          age,
-          Column(
-            children: <Widget>[
-              LayoutBuilder(builder: (context, constraints) {
-                final StoreWidget store =
-                    context.inheritFromWidgetOfExactType(StoreWidget);
-
-                return Text('name: ${store.name}, age: ${store.age}');
-              }),
-              RaisedButton(
-                onPressed: () {
-                  setState(() {
-                    name = 'matt awesome!';
-                  });
-                },
-                child: Text('change name'),
-              ),
-              LittleWidget()
-            ],
-          )),
+      child: Column(
+        children: <Widget>[
+          block,
+          RaisedButton(
+            onPressed: () {
+              setState(() {
+                block = StoreWidget('matt awesome', 26, LittleWidget());
+              });
+            },
+            child: Text('change name'),
+          )
+        ],
+      ),
     );
   }
 }
 
-class LittleWidget extends StatelessWidget{
+class LittleWidget extends StatefulWidget {
+  const LittleWidget();
+
   @override
-  Widget build(BuildContext context) {
-    print('a little text rebuild!');
-    return Text('a little text');
+  State<StatefulWidget> createState() {
+    return LittleWidgetState();
+  }
+}
+
+class LittleWidgetState extends State<LittleWidget> {
+  @override
+  void didUpdateWidget(LittleWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    print('did update widget');
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    print('little widget did change dependencies');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print('little widget rebuild');
+
+    final store = StoreWidget.of(context);
+
+    return Column(
+      children: <Widget>[
+        Text('name: ${store.name}, age: ${store.age}'),
+      ],
+    );
+  }
 }
 
 class StoreWidget extends InheritedWidget {
@@ -64,11 +83,15 @@ class StoreWidget extends InheritedWidget {
 
   StoreWidget(this.name, this.age, child) : super(child: child);
 
+  static StoreWidget of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(StoreWidget);
+  }
+
   @override
   bool updateShouldNotify(StoreWidget oldWidget) {
-    print('old widget update, old age: ${oldWidget.age}, old name: ${oldWidget.name}');
+    print(
+        'old widget update, old age: ${oldWidget.age}, old name: ${oldWidget.name}');
 
-    // return name != oldWidget.name || age != oldWidget.age;
-    return false;
+    return name != oldWidget.name || age != oldWidget.age;
   }
 }
