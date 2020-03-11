@@ -33,9 +33,6 @@ class BootstrapPageState extends State<BootstrapPage> {
                   });
                 },
               ),
-              if (count % 2 == 0)
-                _SubClass(count),
-              // _SubClass(count),
               Container(
                 width: 200,
                 color: Color(0xffaabbcc),
