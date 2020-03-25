@@ -32,7 +32,7 @@ class WrapperState extends State<Wrapper> {
               });
             },
             child: Text('change name'),
-          )
+          ),
         ],
       ),
     );
